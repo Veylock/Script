@@ -14,7 +14,7 @@ local VeyGejGameList = {
     {
         Name = "Kick A Lucky Blox",
         PlaceIds = { 89469502395769 },
-        ScriptURL = "https://raw.githubusercontent.com/Veylock/Script/refs/heads/main/VeyGej-Scripts"
+        ScriptURL = "https://raw.githubusercontent.com/Veylock/Script/refs/heads/main/VeyGej-Scripts.lua"
         CacheName = "VeyGejBlox.lua"
     }
 }
