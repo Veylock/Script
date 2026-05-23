@@ -6,8 +6,9 @@ local fsRead=readfile
 local fsIsFile=isfile
 local fsMakeFolder=makefolder
 local fsIsFolder=isfolder
-if _E.VeyGejHub_Unload then pcall(_E.VeyGejHub_Unload)
-end _E.HubRunning=true
+if _E.VeyGejHub_Unload then pcall(_E.VeyGejHub_Unload) end
+if _E.LuxyHub_Unload then pcall(_E.LuxyHub_Unload) end
+_E.HubRunning=true
 _E.AFarm=false
 _E.APredict=false
 _E.TBrainrot= {
