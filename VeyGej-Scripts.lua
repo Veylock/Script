@@ -1,4 +1,4 @@
-do local _E=getgenv()
+wdo local _E=getgenv()
 local script_id=game:GetService("HttpService"):GenerateGUID(false)
 _E.CurrentScriptID=script_id
 local fsWrite=writefile
@@ -649,14 +649,28 @@ end)
 TabMisc:CreateToggle("Enable Webhook","",_E.AWebhook,function(Val) _E.AWebhook=Val
 SaveConfig()
 end)
-task.spawn(function() while _E.HubRunning do task.wait(5.0)
+task.spawn(function() while _E.HubRunning do task.wait(3.0)
 pcall(function() local coreGui=game:GetService("CoreGui")
 local playerGui=game:GetService("Players").LocalPlayer:FindFirstChildOfClass("PlayerGui")
-local guis= {
-    coreGui,playerGui
-};
-for _,parent in ipairs(guis) do if parent then for _,gui in ipairs(parent:GetChildren()) do if (gui:IsA("ScreenGui") and (gui.Name:find("Luxy") or (gui.Name=="ScreenGui"))) then for _,label in ipairs(gui:GetDescendants()) do if (label:IsA("TextLabel") and ((label.Name=="Value") or (label.Name=="Selected"))) then if ((label.Text=="None") or (label.Text=="Any")) then label.Text="--"
-end end end end end end end end)
+local targetGuis= {}
+if coreGui then
+    local ui = coreGui:FindFirstChild("LuxyUI")
+    if ui then table.insert(targetGuis, ui) end
+end
+if playerGui then
+    local ui = playerGui:FindFirstChild("LuxyUI")
+    if ui then table.insert(targetGuis, ui) end
+end
+for _, gui in ipairs(targetGuis) do
+    for _, label in ipairs(gui:GetDescendants()) do
+        if (label:IsA("TextLabel") and ((label.Name=="Value") or (label.Name=="Selected"))) then
+            if ((label.Text=="None") or (label.Text=="Any")) then
+                label.Text="--"
+            end
+        end
+    end
+end
+end)
 end end)
 task.spawn(function() while _E.HubRunning do task.wait(0.1)
 if _E.AFarm then local chr=LP.Character
